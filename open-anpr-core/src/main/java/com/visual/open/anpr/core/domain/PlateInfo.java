@@ -1,9 +1,6 @@
 package com.visual.open.anpr.core.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class PlateInfo implements Comparable<PlateInfo>, Serializable {
     /**车牌分数**/
