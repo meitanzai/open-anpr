@@ -1,6 +1,6 @@
 package com.visual.open.anpr.core.utils;
 
-import com.visual.face.search.core.domain.FaceInfo;
+import com.visual.open.anpr.core.domain.PlateInfo;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -19,29 +19,29 @@ public class CropUtil {
     /**
      * 根据4个点裁剪图像
      * @param image
-     * @param faceBox
+     * @param plateBox
      * @return
      */
-    public static Mat crop(Mat image, FaceInfo.FaceBox faceBox){
+    public static Mat crop(Mat image, PlateInfo.PlateBox plateBox){
         Mat endM = null;
         Mat startM = null;
         Mat perspectiveTransform = null;
         try {
             List<Point> dest = new ArrayList<>();
-            dest.add(new Point(faceBox.leftTop.x, faceBox.leftTop.y));
-            dest.add(new Point(faceBox.rightTop.x, faceBox.rightTop.y));
-            dest.add(new Point(faceBox.rightBottom.x, faceBox.rightBottom.y));
-            dest.add(new Point(faceBox.leftBottom.x, faceBox.leftBottom.y));
+            dest.add(new Point(plateBox.leftTop.x, plateBox.leftTop.y));
+            dest.add(new Point(plateBox.rightTop.x, plateBox.rightTop.y));
+            dest.add(new Point(plateBox.rightBottom.x, plateBox.rightBottom.y));
+            dest.add(new Point(plateBox.leftBottom.x, plateBox.leftBottom.y));
             startM = Converters.vector_Point2f_to_Mat(dest);
             List<Point> ends = new ArrayList<>();
             ends.add(new Point(0, 0));
-            ends.add(new Point(faceBox.width(), 0));
-            ends.add(new Point(faceBox.width(), faceBox.height()));
-            ends.add(new Point(0, faceBox.height()));
+            ends.add(new Point(plateBox.width(), 0));
+            ends.add(new Point(plateBox.width(), plateBox.height()));
+            ends.add(new Point(0, plateBox.height()));
             endM = Converters.vector_Point2f_to_Mat(ends);
             perspectiveTransform = Imgproc.getPerspectiveTransform(startM, endM);
-            Mat outputMat = new Mat((int)faceBox.height() , (int)faceBox.width(), CvType.CV_8UC4);
-            Imgproc.warpPerspective(image, outputMat, perspectiveTransform, new Size((int)faceBox.width(), (int)faceBox.height()), Imgproc.INTER_CUBIC);
+            Mat outputMat = new Mat((int)plateBox.height() , (int)plateBox.width(), CvType.CV_8UC4);
+            Imgproc.warpPerspective(image, outputMat, perspectiveTransform, new Size((int)plateBox.width(), (int)plateBox.height()), Imgproc.INTER_CUBIC);
             return outputMat;
         }finally {
             if(null != endM){

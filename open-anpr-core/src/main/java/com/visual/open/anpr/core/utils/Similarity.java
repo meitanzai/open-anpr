@@ -2,7 +2,7 @@ package com.visual.open.anpr.core.utils;
 
 import org.apache.commons.math3.linear.RealMatrix;
 
-import static com.visual.face.search.core.utils.ArrayUtil.matrixNorm;
+import com.visual.open.anpr.core.utils.ArrayUtil;
 
 public class Similarity {
 
@@ -66,7 +66,7 @@ public class Similarity {
         RealMatrix rm1 = MathUtil.createMatrix(1, ArrayUtil.floatToDouble(leftVector));
         RealMatrix rm2 = MathUtil.createMatrix(1, ArrayUtil.floatToDouble(rightVector));
         RealMatrix num = rm1.multiply(rm2.transpose());
-        double deco = matrixNorm(rm1.getData()) * matrixNorm(rm2.getData());
+        double deco = ArrayUtil.matrixNorm(rm1.getData()) * ArrayUtil.matrixNorm(rm2.getData());
         double cos = num.getEntry(0, 0) / deco;
         double sim = cos;
         if(cos >= 0.5){

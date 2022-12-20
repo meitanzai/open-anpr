@@ -474,10 +474,17 @@ public class ImageMat implements Serializable {
      * @return
      */
     private float[][][][] to4dFloatArray(boolean firstChannel, boolean release){
+        return to4dFloatArray(firstChannel, new float[]{1, 1, 1}, release);
+    }
+
+    /**
+     * 转换为单精度形数组
+     * @param firstChannel
+     * @param release   是否释放参数mat
+     * @return
+     */
+    private float[][][][] to4dFloatArray(boolean firstChannel, float[] std, boolean release){
         try {
-
-            float std[] = {0.229f, 0.224f, 0.225f};
-
             int width = this.mat.cols();
             int height = this.mat.rows();
             int channel = this.mat.channels();
@@ -638,6 +645,19 @@ public class ImageMat implements Serializable {
     }
 
     /**
+     * 转换为单精度形OnnxTensor,不释放原始图片数据
+     * @param firstChannel
+     * @return
+     */
+    public OnnxTensor to4dFloatOnnxTensorAndNoReleaseMat(float[] std, boolean firstChannel) {
+        try {
+            return OnnxTensor.createTensor(env, this.to4dFloatArray(firstChannel, std, false));
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * 转换为单精度形OnnxTensor,并释放原始图片数据
      * @param firstChannel
      * @return
@@ -645,6 +665,19 @@ public class ImageMat implements Serializable {
     public OnnxTensor to4dFloatOnnxTensorAndDoReleaseMat(boolean firstChannel) {
         try {
             return OnnxTensor.createTensor(env, this.to4dFloatArrayAndDoReleaseMat(firstChannel));
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 转换为单精度形OnnxTensor,并释放原始图片数据
+     * @param firstChannel
+     * @return
+     */
+    public OnnxTensor to4dFloatOnnxTensorAndDoReleaseMat(float[] std, boolean firstChannel) {
+        try {
+            return OnnxTensor.createTensor(env, this.to4dFloatArray(firstChannel, std, true));
         }catch (Exception e){
             throw new RuntimeException(e);
         }

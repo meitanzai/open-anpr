@@ -2,8 +2,7 @@ package com.visual.open.anpr.core.utils;
 
 import ai.onnxruntime.OnnxTensor;
 import ai.onnxruntime.OrtSession;
-import com.visual.face.search.core.domain.ImageMat;
-import com.visual.face.search.core.domain.Mats;
+import com.visual.open.anpr.core.domain.ImageMat;
 import org.opencv.core.Mat;
 
 public class ReleaseUtil {
@@ -22,18 +21,6 @@ public class ReleaseUtil {
         }
     }
 
-    public static void release(Mats mats){
-        if(null == mats || mats.isEmpty()){
-            return;
-        }
-        try {
-            mats.release();
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            mats = null;
-        }
-    }
 
     public static void release(ImageMat ...imageMats){
         for(ImageMat imageMat : imageMats){
