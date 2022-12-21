@@ -159,6 +159,17 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
         }
 
         /**
+         * 构造一个车牌框
+         * @param leftTop       左上角坐标值
+         * @param rightTop      右上角坐标
+         * @param rightBottom   右下角坐标
+         * @param leftBottom    左下角坐标
+         */
+        public static PlateBox build(Point leftTop, Point rightTop, Point rightBottom, Point leftBottom){
+            return new PlateBox(leftTop,rightTop,rightBottom,leftBottom);
+        }
+
+        /**
          * x的最小坐标
          * @return
          */
@@ -277,6 +288,15 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
                     new Point(leftBottom.x + change_x_p2_p4,  leftBottom.y + change_y_p2_p4)
             );
         }
+
+        /**
+         * 转换为数组
+         * @return
+         */
+        public Point[] toArray(){
+            return new Point[]{leftTop, rightTop, rightBottom, leftBottom};
+        }
+
     }
 
 }
