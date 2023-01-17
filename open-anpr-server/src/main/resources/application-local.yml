@@ -1,0 +1,47 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为80
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 10
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 5
+
+# 日志配置
+logging:
+  level:
+    com.visual.open.anpr: info
+    org.springframework: warn
+
+# 模型配置
+visual:
+  model:
+    plateDetection:
+      name: TorchPlateDetection
+      modelPath:
+      thread: 1
+    plateRecognition:
+      name: TorchPlateRecognition
+      modelPath:
+      thread: 1
+  swagger:
+    enable: true
+
+# Spring配置
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  10MB
+      # 设置总上传的文件大小
+      max-request-size:  20MB
