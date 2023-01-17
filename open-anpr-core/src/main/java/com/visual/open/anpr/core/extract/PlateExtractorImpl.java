@@ -10,6 +10,7 @@ import com.visual.open.anpr.core.utils.CropUtil;
 import org.opencv.core.Mat;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,14 @@ public class PlateExtractorImpl implements PlateExtractor {
             Mat crop = CropUtil.crop(image.toCvMat(), plateInfo.box);
             plateInfo.parseInfo = torchPlateRecognition.inference(ImageMat.fromCVMat(crop), plateInfo.single, new HashMap<>());
         }
+        //清洗数据
+        Iterator<PlateInfo> iterator = plateInfos.iterator();
+         while (iterator.hasNext()) {
+             PlateInfo.ParseInfo parseInfo = iterator.next().parseInfo;
+             if(null == parseInfo || null == parseInfo.plateNo || parseInfo.plateNo.length() <= 4){
+                 iterator.remove();
+             }
+         }
         //返回数据
         return PlateImage.build(image.toBase64AndNoReleaseMat(), plateInfos);
     }
