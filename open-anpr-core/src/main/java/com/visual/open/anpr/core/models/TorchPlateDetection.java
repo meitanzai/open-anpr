@@ -60,7 +60,8 @@ public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection
                     PlateInfo.Point.build(
                         clip(item[11], 0, imageMat.getWidth()),
                         clip(item[12], 0, imageMat.getHeight()))
-                ));
+                ), item[13] == 0);
+                //添加数据
                 plateInfos.add(plateInfo);
             }
             //返回

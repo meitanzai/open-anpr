@@ -9,6 +9,8 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
     public float angle;
     /**车牌框**/
     public PlateBox box;
+    /**是否为单行车牌**/
+    public boolean single;
 
     /**
      * 构造函数
@@ -16,10 +18,11 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
      * @param box       车牌框
      * @param angle     车牌旋转角度
      */
-    private PlateInfo(float score, PlateBox box, float angle) {
+    private PlateInfo(float score, PlateBox box, float angle, boolean single) {
         this.score = score;
         this.angle = angle;
         this.box = box;
+        this.single = single;
     }
 
     /**
@@ -28,7 +31,16 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
      * @param box       车牌框
      */
     public static PlateInfo build(float score, PlateBox box){
-        return new PlateInfo(score, box, 0);
+        return new PlateInfo(score, box, 0, true);
+    }
+
+    /**
+     * 构造一个车牌信息
+     * @param score     车牌分数
+     * @param box       车牌框
+     */
+    public static PlateInfo build(float score, PlateBox box, boolean single){
+        return new PlateInfo(score, box, 0, single);
     }
 
     /**
@@ -38,7 +50,7 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
      * @param angle     车牌旋转角度
      */
     public static PlateInfo build(float score, PlateBox box, float angle){
-        return new PlateInfo(score, box, angle);
+        return new PlateInfo(score, box, angle, true);
     }
 
     /**
