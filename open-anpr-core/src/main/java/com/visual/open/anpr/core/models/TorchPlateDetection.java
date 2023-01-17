@@ -14,6 +14,10 @@ import org.opencv.imgproc.Imgproc;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * 车牌检测模型
+ * git：https://github.com/we0091234/Chinese_license_plate_detection_recognition
+ */
 public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection {
     private static int imageWidth = 640;
     private static int imageHeight= 640;
