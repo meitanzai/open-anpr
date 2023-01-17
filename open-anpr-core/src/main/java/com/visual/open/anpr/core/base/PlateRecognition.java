@@ -6,5 +6,5 @@ import com.visual.open.anpr.core.domain.PlateInfo.ParseInfo;
 
 public interface PlateRecognition {
 
-    ParseInfo inference(ImageMat image, boolean single, Map<String, Object> params);
+    ParseInfo inference(ImageMat image, Boolean single, Map<String, Object> params);
 }

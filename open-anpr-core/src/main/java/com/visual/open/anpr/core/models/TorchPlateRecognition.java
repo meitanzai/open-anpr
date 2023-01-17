@@ -31,13 +31,13 @@ public class TorchPlateRecognition  extends BaseOnnxInfer implements PlateRecogn
     }
 
     @Override
-    public ParseInfo inference(ImageMat image, boolean single, Map<String, Object> params) {
+    public ParseInfo inference(ImageMat image, Boolean single, Map<String, Object> params) {
         OnnxTensor tensor = null;
         OrtSession.Result output = null;
         ImageMat imageMat = null;
         try {
             //图片处理
-            imageMat = single ? image.clone() : splitAndMergePlate(image);
+            imageMat = null == single || single ? image.clone() : splitAndMergePlate(image);
             //转换数据为张量
             tensor = imageMat.resizeAndNoReleaseMat(168, 48)
                 .blobFromImageAndDoReleaseMat(1.0/255, new Scalar(MEAN_VALUE, MEAN_VALUE, MEAN_VALUE), true)
