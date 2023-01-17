@@ -18,6 +18,10 @@ import org.opencv.imgproc.Imgproc;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * 车牌识别
+ * git: https://github.com/we0091234/crnn_plate_recognition/tree/plate_color
+ */
 public class TorchPlateRecognition  extends BaseOnnxInfer implements PlateRecognition {
     private static float STD_VALUE = 0.193f;
     private static float MEAN_VALUE = 0.588f;
