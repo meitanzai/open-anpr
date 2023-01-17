@@ -19,9 +19,13 @@ import java.util.stream.Collectors;
  * git：https://github.com/we0091234/Chinese_license_plate_detection_recognition
  */
 public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection {
-    private static int imageWidth = 640;
-    private static int imageHeight= 640;
-    private static  Scalar border = new Scalar(114, 114, 114);
+    private final static int imageWidth = 640;
+    private final static int imageHeight= 640;
+    private final static  Scalar border = new Scalar(114, 114, 114);
+    //人脸预测分数阈值
+    public final static float defScoreTh = 0.3f;
+    //人脸重叠iou阈值
+    public final static float defIouTh = 0.5f;
 
     public TorchPlateDetection(String modelPath, int threads) {
         super(modelPath, threads);
@@ -34,6 +38,9 @@ public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection
         BorderMat makeBorderMat = null;
         ImageMat imageMat = image.clone();
         try {
+            //清理参数
+            iouTh = iouTh <= 0 ? defIouTh : iouTh;
+            scoreTh = scoreTh <= 0 ? defScoreTh : scoreTh;
             //对图像进行标准宽高的处理
             makeBorderMat = resizeAndMakeBorderMat(imageMat.toCvMat(), imageWidth, imageHeight);
             //转换数据为张量
