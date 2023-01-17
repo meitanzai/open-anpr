@@ -63,8 +63,6 @@ public class PlateExtractorTest  extends BaseTest {
                 //添加文本
                 PlateInfo.ParseInfo parseInfo = plateInfo.parseInfo;
                 int fonSize = Float.valueOf(plateInfo.box.width() / parseInfo.plateNo.length() * 1.4f).intValue();
-                System.out.println(fonSize);
-
                 drawImage.drawText(parseInfo.plateNo,
                         new DrawImage.Point((int)points[0].x, (int)points[0].y-fonSize*2), fonSize, Color.RED);
                 drawImage.drawText((plateInfo.single ? "单排" : "双排") + ":" + parseInfo.plateColor,
