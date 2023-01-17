@@ -138,7 +138,7 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
          * @param rightBottom   右下角坐标
          * @param leftBottom    左下角坐标
          */
-        public PlateBox(Point leftTop, Point rightTop, Point rightBottom, Point leftBottom) {
+        private PlateBox(Point leftTop, Point rightTop, Point rightBottom, Point leftBottom) {
             this.leftTop = leftTop;
             this.rightTop = rightTop;
             this.rightBottom = rightBottom;
@@ -311,4 +311,19 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
 
     }
 
+    public static class ParseInfo implements Serializable {
+        public String plateNo;
+        public String plateColor;
+        public float colorScore;
+
+        private ParseInfo(String plateNo, String plateColor, float colorScore) {
+            this.plateNo = plateNo;
+            this.plateColor = plateColor;
+            this.colorScore = colorScore;
+        }
+
+        public static ParseInfo build(String plateNo, String plateColor, float colorScore){
+            return new ParseInfo(plateNo, plateColor, colorScore);
+        }
+    }
 }
