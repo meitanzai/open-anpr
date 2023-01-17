@@ -27,20 +27,22 @@ public class PlateExtractorTest  extends BaseTest {
         PlateExtractor extractor = new PlateExtractorImpl(torchPlateDetection, torchPlateRecognition);
 
         String imagePath = "open-anpr-core/src/test/resources/images";
+//        String imagePath = "/Users/diven/workspace/pycharm/github/Chinese_license_plate_detection_recognition/imgs1/image001.jpg";
         Map<String, String> map = getImagePathMap(imagePath);
         for(String fileName : map.keySet()) {
             String imageFilePath = map.get(fileName);
             System.out.println(imageFilePath);
             Mat image = Imgcodecs.imread(imageFilePath);
-            long s = System.currentTimeMillis();
+            long startTime = System.currentTimeMillis();
             ExtParam extParam = ExtParam.build()
                     .setTopK(20)
                     .setScoreTh(0.3f)
                     .setIouTh(0.5f);
-
+            //推理
             PlateImage plateImage = extractor.extract(ImageMat.fromCVMat(image), extParam, new HashMap<>());
+            System.out.println("cost:" + (System.currentTimeMillis()-startTime));
             List<PlateInfo> plateInfos = plateImage.PlateInfos();
-
+            //可视化
             DrawImage drawImage = DrawImage.build(imageFilePath);
             for(PlateInfo plateInfo: plateInfos){
                 //画框
@@ -64,9 +66,9 @@ public class PlateExtractorTest  extends BaseTest {
                 PlateInfo.ParseInfo parseInfo = plateInfo.parseInfo;
                 int fonSize = Float.valueOf(plateInfo.box.width() / parseInfo.plateNo.length() * 1.4f).intValue();
                 drawImage.drawText(parseInfo.plateNo,
-                        new DrawImage.Point((int)points[0].x, (int)points[0].y-fonSize*2), fonSize, Color.RED);
+                        new DrawImage.Point((int)points[0].x, (int)points[0].y-(int)(fonSize*2.2)), fonSize, Color.RED);
                 drawImage.drawText((plateInfo.single ? "单排" : "双排") + ":" + parseInfo.plateColor,
-                        new DrawImage.Point((int)points[0].x, (int)points[0].y-fonSize), fonSize, Color.RED);
+                        new DrawImage.Point((int)points[0].x, (int)points[0].y-(int)(fonSize*1.2)), fonSize, Color.RED);
             }
             //show
             ImageMat.fromCVMat(drawImage.toMat()).imShow();

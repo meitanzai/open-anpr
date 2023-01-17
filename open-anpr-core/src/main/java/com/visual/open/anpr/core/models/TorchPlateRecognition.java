@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class TorchPlateRecognition  extends BaseOnnxInfer implements PlateRecognition {
     private static float STD_VALUE = 0.193f;
-    private static float MEAN_VALUE = 0.588f;
+    private static float MEAN_VALUE = 0.588f * 255;
     private final static String[] PLATE_COLOR = new String[]{"黑色", "蓝色", "绿色", "白色", "黄色"};
     private final static String PLATE_NAME=
             "#京沪津渝冀晋蒙辽吉黑苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云藏陕甘青宁新" +
@@ -44,7 +44,7 @@ public class TorchPlateRecognition  extends BaseOnnxInfer implements PlateRecogn
             imageMat = null == single || single ? image.clone() : splitAndMergePlate(image);
             //转换数据为张量
             tensor = imageMat.resizeAndNoReleaseMat(168, 48)
-                .blobFromImageAndDoReleaseMat(1.0/255, new Scalar(MEAN_VALUE, MEAN_VALUE, MEAN_VALUE), true)
+                .blobFromImageAndDoReleaseMat(1.0/255, new Scalar(MEAN_VALUE, MEAN_VALUE, MEAN_VALUE), false)
                 .to4dFloatOnnxTensorAndNoReleaseMat(new float[]{STD_VALUE, STD_VALUE, STD_VALUE}, true);
             //ONNX推理
             output = getSession().run(Collections.singletonMap(getInputName(), tensor));
@@ -114,7 +114,7 @@ public class TorchPlateRecognition  extends BaseOnnxInfer implements PlateRecogn
     private static int[] maxScoreIndex(float[][] result){
         int[] indexes = new int[result.length];
         for (int i = 0; i < result.length; i++){
-            int index = -1;
+            int index = 0;
             float max = Float.MIN_VALUE;
             for (int j = 0; j < result[i].length; j++) {
                 if (max < result[i][j]){
