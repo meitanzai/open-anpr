@@ -16,7 +16,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.visual.face.search: info
+    com.visual.open.anpr: info
     org.springframework: warn
 
 # 模型配置

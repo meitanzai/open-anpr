@@ -59,7 +59,7 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
      * 对车牌框进行旋转对应的角度
      * @return
      */
-    public PlateBox rotateFaceBox(){
+    public PlateBox rotatePlateBox(){
         return this.box.rotate(this.angle);
     }
 

@@ -194,26 +194,26 @@ public class TorchPlateDetection extends BaseOnnxInfer implements PlateDetection
         while(!boxes.isEmpty()){
             Iterator<float[]> iterator = boxes.iterator();
             //获取第一个元素，并删除元素
-            float[] firstFace = iterator.next();
+            float[] firstPlate = iterator.next();
             iterator.remove();
             //对比后面元素与第一个元素之间的iou
             while (iterator.hasNext()) {
-                float[] nextFace = iterator.next();
-                float x1=Math.max(firstFace[0], nextFace[0]);
-                float y1=Math.max(firstFace[1], nextFace[1]);
-                float x2=Math.min(firstFace[2], nextFace[2]);
-                float y2=Math.min(firstFace[3], nextFace[3]);
+                float[] nextPlate = iterator.next();
+                float x1=Math.max(firstPlate[0], nextPlate[0]);
+                float y1=Math.max(firstPlate[1], nextPlate[1]);
+                float x2=Math.min(firstPlate[2], nextPlate[2]);
+                float y2=Math.min(firstPlate[3], nextPlate[3]);
                 float w = Math.max(0, x2-x1);
                 float h = Math.max(0, y2-y1);
                 float inter_area = w * h;
-                float union_area = (firstFace[2] - firstFace[0]) * (firstFace[3] - firstFace[1]) +
-                        (nextFace[2] - nextFace[0]) * (nextFace[3] - nextFace[1]);
+                float union_area = (firstPlate[2] - firstPlate[0]) * (firstPlate[3] - firstPlate[1]) +
+                        (nextPlate[2] - nextPlate[0]) * (nextPlate[3] - nextPlate[1]);
                 float iou = inter_area/(union_area-inter_area);
                 if(iou >= iouTh){
                     iterator.remove();
                 }
             }
-            result.add(firstFace);
+            result.add(firstPlate);
         }
         return result;
     }

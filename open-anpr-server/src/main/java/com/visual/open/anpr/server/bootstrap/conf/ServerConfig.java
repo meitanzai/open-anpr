@@ -11,10 +11,6 @@ public class ServerConfig {
     public static class SearchUtils {}
 
     @Configuration
-    @ComponentScan("com.visual.open.anpr.server.config")
-    public static class SearchConfig {}
-
-    @Configuration
     @ComponentScan({"com.visual.open.anpr.server.service"})
     public static class ServiceConfig {}
 
@@ -22,7 +18,4 @@ public class ServerConfig {
     @ComponentScan({"com.visual.open.anpr.server.controller"})
     public static class ControllerConfig {}
 
-    @Configuration
-    @ComponentScan({"com.visual.open.anpr.server.scheduler"})
-    public static class SchedulerConfig {}
 }
