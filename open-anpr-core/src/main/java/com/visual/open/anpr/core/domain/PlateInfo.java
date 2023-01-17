@@ -11,6 +11,8 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
     public PlateBox box;
     /**是否为单行车牌**/
     public boolean single;
+    /**解析到的车牌信息**/
+    public ParseInfo parseInfo;
 
     /**
      * 构造函数
@@ -312,8 +314,13 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
     }
 
     public static class ParseInfo implements Serializable {
+        /**当前图片的base64编码值**/
+        public String image;
+        /**车牌文本信息**/
         public String plateNo;
+        /**车牌的颜色信息**/
         public String plateColor;
+        /**车牌颜色的分数**/
         public float colorScore;
 
         private ParseInfo(String plateNo, String plateColor, float colorScore) {
