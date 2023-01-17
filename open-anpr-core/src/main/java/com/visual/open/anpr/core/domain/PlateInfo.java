@@ -323,14 +323,15 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
         /**车牌颜色的分数**/
         public float colorScore;
 
-        private ParseInfo(String plateNo, String plateColor, float colorScore) {
+        private ParseInfo(String image, String plateNo, String plateColor, float colorScore) {
+            this.image = image;
             this.plateNo = plateNo;
             this.plateColor = plateColor;
             this.colorScore = colorScore;
         }
 
-        public static ParseInfo build(String plateNo, String plateColor, float colorScore){
-            return new ParseInfo(plateNo, plateColor, colorScore);
+        public static ParseInfo build(String image, String plateNo, String plateColor, float colorScore){
+            return new ParseInfo(image, plateNo, plateColor, colorScore);
         }
     }
 }

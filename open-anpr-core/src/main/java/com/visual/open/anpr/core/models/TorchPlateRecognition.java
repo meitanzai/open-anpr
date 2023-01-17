@@ -56,7 +56,11 @@ public class TorchPlateRecognition  extends BaseOnnxInfer implements PlateRecogn
             double[] colorSoftMax = SoftMaxUtil.softMax(ArrayUtil.floatToDouble(color[0]));
             Double[] colorRResult = decodeColor(colorSoftMax);
             //返回解析到的数据
-            return ParseInfo.build(plateNo, PLATE_COLOR[colorRResult[0].intValue()], colorRResult[1].floatValue());
+            return ParseInfo.build(
+                    image.toBase64AndNoReleaseMat(), plateNo,
+                    PLATE_COLOR[colorRResult[0].intValue()],
+                    colorRResult[1].floatValue()
+            );
         }catch (Exception e){
             //抛出异常
             throw new RuntimeException(e);
