@@ -27,7 +27,6 @@ public class PlateExtractorTest  extends BaseTest {
         PlateExtractor extractor = new PlateExtractorImpl(torchPlateDetection, torchPlateRecognition);
 
         String imagePath = "open-anpr-core/src/test/resources/images";
-//        String imagePath = "/Users/diven/workspace/pycharm/github/Chinese_license_plate_detection_recognition/imgs1/image001.jpg";
         Map<String, String> map = getImagePathMap(imagePath);
         for(String fileName : map.keySet()) {
             String imageFilePath = map.get(fileName);
