@@ -2,6 +2,7 @@ package com.visual.open.anpr.core.utils;
 
 import ai.onnxruntime.OnnxTensor;
 import ai.onnxruntime.OrtSession;
+import com.visual.open.anpr.core.domain.BorderMat;
 import com.visual.open.anpr.core.domain.ImageMat;
 import org.opencv.core.Mat;
 
@@ -31,6 +32,20 @@ public class ReleaseUtil {
                     e.printStackTrace();
                 }finally {
                     imageMat = null;
+                }
+            }
+        }
+    }
+
+    public static void release(BorderMat ...borderMats){
+        for(BorderMat borderMat : borderMats){
+            if(null != borderMat){
+                try {
+                    borderMat.release();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }finally {
+                    borderMat = null;
                 }
             }
         }
