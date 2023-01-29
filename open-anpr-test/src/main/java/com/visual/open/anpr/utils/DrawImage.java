@@ -1,6 +1,5 @@
 package com.visual.open.anpr.utils;
 
-
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
@@ -48,6 +47,14 @@ public class DrawImage {
         g.setColor(color);
         g.setStroke(new BasicStroke(lineWidth));
         g.drawRect(rect.x, rect.y, rect.width, rect.height);
+        return this;
+    }
+
+    public DrawImage drawLine(Point point1, Point point2, int lineWidth, Color color){
+        Graphics2D g = (Graphics2D)image.getGraphics();
+        g.setColor(color);
+        g.setStroke(new BasicStroke(lineWidth));
+        g.drawLine(point1.x, point1.y, point2.x, point2.y);
         return this;
     }
 

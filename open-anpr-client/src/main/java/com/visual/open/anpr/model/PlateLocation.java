@@ -3,64 +3,94 @@ package com.visual.open.anpr.model;
 import java.io.Serializable;
 
 public class PlateLocation implements Serializable {
-    /**左上角x坐标**/
-    private int x;
-    /**左上角y坐标**/
-    private int y;
-    /**宽度**/
-    private int w;
-    /**高度**/
-    private int h;
+
+    /**左上角坐标值**/
+    private LocationPoint leftTop;
+    /**右上角坐标**/
+    private LocationPoint rightTop;
+    /**右下角坐标**/
+    private LocationPoint rightBottom;
+    /**左下角坐标**/
+    private LocationPoint leftBottom;
+
+    public LocationPoint getLeftTop() {
+        return leftTop;
+    }
+
+    public void setLeftTop(LocationPoint leftTop) {
+        this.leftTop = leftTop;
+    }
+
+    public LocationPoint getRightTop() {
+        return rightTop;
+    }
+
+    public void setRightTop(LocationPoint rightTop) {
+        this.rightTop = rightTop;
+    }
+
+    public LocationPoint getRightBottom() {
+        return rightBottom;
+    }
+
+    public void setRightBottom(LocationPoint rightBottom) {
+        this.rightBottom = rightBottom;
+    }
+
+    public LocationPoint getLeftBottom() {
+        return leftBottom;
+    }
+
+    public void setLeftBottom(LocationPoint leftBottom) {
+        this.leftBottom = leftBottom;
+    }
+
 
     /**
-     * 构建坐标
-     * @param x
-     * @param y
-     * @param w
-     * @param h
+     * x的最小坐标
      * @return
      */
-    public static PlateLocation build(int x, int y, int w, int h){
-        return new PlateLocation().setX(x).setY(y).setW(w).setH(h);
+    public int minX(){
+        return Math.min(Math.min(Math.min(leftTop.getX(), rightTop.getX()), rightBottom.getX()), leftBottom.getX());
     }
 
-    public static PlateLocation build(float x, float y, float w, float h){
-        return new PlateLocation().setX((int) x).setY((int) y).setW((int) w).setH((int) h);
+    /**
+     * y的最小坐标
+     * @return
+     */
+    public int minY(){
+        return Math.min(Math.min(Math.min(leftTop.getY(), rightTop.getY()), rightBottom.getY()), leftBottom.getY());
     }
 
-    public int getX() {
-        return x;
+    /**
+     * x的最大坐标
+     * @return
+     */
+    public int maxX(){
+        return Math.max(Math.max(Math.max(leftTop.getX(), rightTop.getX()), rightBottom.getX()), leftBottom.getX());
     }
 
-    public PlateLocation setX(int x) {
-        this.x = x;
-        return this;
+    /**
+     * y的最大坐标
+     * @return
+     */
+    public int maxY(){
+        return Math.max(Math.max(Math.max(leftTop.getY(), rightTop.getY()), rightBottom.getY()), leftBottom.getY());
     }
 
-    public int getY() {
-        return y;
+    /**
+     * 获取宽度
+     * @return
+     */
+    public float width(){
+        return (float) Math.sqrt(Math.pow((rightTop.getX()-leftTop.getX()), 2)+Math.pow((rightTop.getY()-leftTop.getY()), 2));
     }
 
-    public PlateLocation setY(int y) {
-        this.y = y;
-        return this;
-    }
-
-    public int getW() {
-        return w;
-    }
-
-    public PlateLocation setW(int w) {
-        this.w = w;
-        return this;
-    }
-
-    public int getH() {
-        return h;
-    }
-
-    public PlateLocation setH(int h) {
-        this.h = h;
-        return this;
+    /**
+     * 获取高度
+     * @return
+     */
+    public float height(){
+        return (float) Math.sqrt(Math.pow((rightTop.getX()-rightBottom.getX()), 2)+Math.pow((rightTop.getY()-rightBottom.getY()), 2));
     }
 }

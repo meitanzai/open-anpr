@@ -37,17 +37,35 @@ public class PlateRecognitionExample {
             DrawImage drawImage = DrawImage.build(imageA.getAbsolutePath());
             if(response.ok()){
                 for(RecognitionRep recognitionRep : response.getData()){
+                    //画位置信息
                     PlateLocation location = recognitionRep.getLocation();
-                    drawImage.drawRect(
-                            new DrawImage.Rect(location.getX(), location.getY(), location.getW(), location.getH()), 2, Color.RED);
-
-
+                    drawImage.drawLine(
+                            new DrawImage.Point(location.getLeftTop().getX(), location.getLeftTop().getY()),
+                            new DrawImage.Point(location.getRightTop().getX(), location.getRightTop().getY()),
+                            2, Color.RED
+                    );
+                    drawImage.drawLine(
+                            new DrawImage.Point(location.getRightTop().getX(), location.getRightTop().getY()),
+                            new DrawImage.Point(location.getRightBottom().getX(), location.getRightBottom().getY()),
+                            2, Color.RED
+                    );
+                    drawImage.drawLine(
+                            new DrawImage.Point(location.getRightBottom().getX(), location.getRightBottom().getY()),
+                            new DrawImage.Point(location.getLeftBottom().getX(), location.getLeftBottom().getY()),
+                            2, Color.RED
+                    );
+                    drawImage.drawLine(
+                            new DrawImage.Point(location.getLeftBottom().getX(), location.getLeftBottom().getY()),
+                            new DrawImage.Point(location.getLeftTop().getX(), location.getLeftTop().getY()),
+                            2, Color.RED
+                    );
+                    //画识别信息
                     RecognitionInfo recognition = recognitionRep.getRecognition();
-                    int fonSize = Float.valueOf(1.4f * location.getW() / recognition.getPlateNo().length()).intValue();
+                    int fonSize = Float.valueOf(1.4f * location.width() / recognition.getPlateNo().length()).intValue();
                     drawImage.drawText(recognition.getPlateNo(),
-                            new DrawImage.Point(location.getX(), location.getY()-(int)(fonSize*2.2)), fonSize, Color.RED);
+                            new DrawImage.Point(location.minX(), location.minY()-(int)(fonSize*2.2)), fonSize, Color.RED);
                     drawImage.drawText((recognition.getLayout() == PlateLayout.SINGLE  ? "单排" : "双排") + ":" + recognition.getPlateColor().getName(),
-                            new DrawImage.Point(location.getX(), location.getY()-(int)(fonSize*1.2)), fonSize, Color.RED);
+                            new DrawImage.Point(location.minX(), location.minY()-(int)(fonSize*1.2)), fonSize, Color.RED);
                 }
             }
             HighGui.imshow("image", drawImage.toMat());
