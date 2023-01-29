@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@Api(tags="02、公共服务-健康检测")
+@Api(tags="02、健康检测服务")
 @RestController("healthController")
 @RequestMapping("/common/health")
 public class HealthController {
 
-    @ApiOperation(value="公共-服务健康检测")
+    @ApiOperation(value="1、健康检测服务")
     @ResponseBody
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     public ResponseInfo<String> check(){

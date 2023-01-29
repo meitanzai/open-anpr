@@ -30,7 +30,7 @@ public class Knife4jConfig {
                     .build())
                 .groupName("1.0.0")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.visual.open.anpr.server.controller.server"))
+                .apis(RequestHandlerSelectors.basePackage("com.visual.open.anpr.server.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
