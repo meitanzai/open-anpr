@@ -54,7 +54,7 @@ docker run -d --name "open-anpr" -p 56790:8080 -e VISUAL_SWAGGER_ENABLE=false di
 docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/logs divenswu/open-anpr:1.0.0
 
 4、服务访问：
-  swagger借口文档： http://127.0.0.1:56790/doc.html
+  swagger接口文档： http://127.0.0.1:56790/doc.html
 ```
 
 * 项目编译，并打包为docker镜像
