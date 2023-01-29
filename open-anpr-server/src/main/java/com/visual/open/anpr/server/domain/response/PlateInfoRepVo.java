@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class PlateInfoRepVo implements Serializable {
     /**车牌置信分数**/
     @ApiModelProperty(value="车牌置信分数:[0,100]", position = 1, required = true)
-    private Float plateScore;
+    private Float score;
 
     /**车牌位置信息**/
     @ApiModelProperty(value="车牌位置信息", position = 3, required = true)
@@ -19,13 +19,12 @@ public class PlateInfoRepVo implements Serializable {
     @ApiModelProperty(value="车牌识别信息", position = 5, required = true)
     private RecognitionInfo recognition;
 
-
-    public Float getPlateScore() {
-        return plateScore;
+    public Float getScore() {
+        return score;
     }
 
-    public void setPlateScore(Float plateScore) {
-        this.plateScore = plateScore;
+    public void setScore(Float score) {
+        this.score = score;
     }
 
     public PlateLocation getLocation() {

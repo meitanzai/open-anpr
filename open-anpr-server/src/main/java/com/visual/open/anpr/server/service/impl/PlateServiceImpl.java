@@ -51,10 +51,12 @@ public class PlateServiceImpl implements PlateService {
             for(PlateInfo plateInfo : plateImage.PlateInfos()){
                 //检测信息
                 PlateInfoRepVo plate = new PlateInfoRepVo();
-                plate.setPlateScore((float)Math.floor(plateInfo.score * 1000000)/10000);
+                plate.setScore((float)Math.floor(plateInfo.score * 1000000)/10000);
                 PlateLocation location = PlateLocation.build(
-                    plateInfo.box.x1(), plateInfo.box.y1(),
-                    plateInfo.box.width(), plateInfo.box.height()
+                    plateInfo.box.x1(),
+                    plateInfo.box.y1(),
+                plateInfo.box.x2()-plateInfo.box.x1(),
+                plateInfo.box.y2()-plateInfo.box.y1()
                 );
                 plate.setLocation(location);
                 //识别信息

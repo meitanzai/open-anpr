@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/common/health")
 public class HealthController {
 
-    @ApiOperation(value="1、健康检测服务")
+    @ApiOperation(value="1、健康检查")
     @ResponseBody
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     public ResponseInfo<String> check(){
