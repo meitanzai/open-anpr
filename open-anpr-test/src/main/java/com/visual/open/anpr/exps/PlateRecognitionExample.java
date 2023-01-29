@@ -15,9 +15,9 @@ public class PlateRecognitionExample {
 
     static{ nu.pattern.OpenCV.loadShared(); }
     //本地开发模式
-    public static String serverHost = "http://127.0.0.1:8080";
+//    public static String serverHost = "http://127.0.0.1:8080";
     //docker部署模式
-    //public static String serverHost = "http://127.0.0.1:56790";
+    public static String serverHost = "http://172.16.36.228:56790";
     //远程测试服务
     //public static String serverHost = "http://open-anpr.diven.nat300.top";
 
@@ -27,6 +27,7 @@ public class PlateRecognitionExample {
     public static void recognition() {
         String searchPath = "open-anpr-test/src/main/resources/image";
         File [] files = Objects.requireNonNull(new File(searchPath).listFiles());
+//        for(int u=0; u<=1000; u++)
         for(int i=0; i< files.length-1; i++){
             File imageA = files[i];
             String imageBase64 = Base64Util.encode(imageA.getAbsolutePath());

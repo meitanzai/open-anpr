@@ -12,7 +12,7 @@ public class TorchPlateDetectionTest {
     public static void main(String[] args) {
         TorchPlateDetection torchPlateDetection = new TorchPlateDetection("open-anpr-core/src/main/resources/models/plate_detect.onnx", 1);
 
-        String imagePath = "open-anpr-core/src/test/resources/images";
+        String imagePath = "open-anpr-core/src/test/resources/images/image001.jpg";
         ImageMat imageMat = ImageMat.fromImage(imagePath);
         List<PlateInfo> plateInfos = torchPlateDetection.inference(imageMat, 0.3f,0.5f, new HashMap<>());
         System.out.println(plateInfos);
