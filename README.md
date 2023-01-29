@@ -88,3 +88,7 @@ docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/
 * 微信公众号：关注一下，是对我最大的支持
 
 ![微信公众号](scripts/images/%E5%85%AC%E4%BC%97%E5%8F%B7-%E5%BE%AE%E4%BF%A1.jpg)
+
+### 欢迎来访我的其他开源项目
+
+* [人脸M:N搜索服务：https://gitee.com/open-visual/face-search](https://gitee.com/open-visual/face-search)
