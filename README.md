@@ -25,7 +25,7 @@
 
 * swagger文档：启动项目且开启swagger，访问：host:port/doc.html, 如 http://127.0.0.1:8080/doc.html
 
-### 搜索客户端
+### JAVA客户端
 
 * Java依赖,未发布到中央仓库，需要自行编译发布到私有仓库
 ```
