@@ -19,6 +19,8 @@
     <modules>
         <module>open-anpr-core</module>
         <module>open-anpr-server</module>
+        <module>open-anpr-test</module>
+        <module>open-anpr-client</module>
     </modules>
 
     <properties>
@@ -39,6 +41,16 @@
             <dependency>
                 <groupId>com.visual.open.anpr</groupId>
                 <artifactId>open-anpr-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.visual.open.anpr</groupId>
+                <artifactId>open-anpr-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.visual.open.anpr</groupId>
+                <artifactId>open-anpr-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

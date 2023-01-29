@@ -5,10 +5,7 @@ import com.visual.open.anpr.core.domain.ImageMat;
 import com.visual.open.anpr.core.domain.PlateImage;
 import com.visual.open.anpr.core.domain.PlateInfo;
 import com.visual.open.anpr.core.extract.PlateExtractor;
-import com.visual.open.anpr.server.domain.extend.PlateColor;
-import com.visual.open.anpr.server.domain.extend.PlateLayout;
-import com.visual.open.anpr.server.domain.extend.PlateLocation;
-import com.visual.open.anpr.server.domain.extend.RecognitionInfo;
+import com.visual.open.anpr.server.domain.extend.*;
 import com.visual.open.anpr.server.domain.request.PlateInfoReqVo;
 import com.visual.open.anpr.server.domain.response.PlateInfoRepVo;
 import com.visual.open.anpr.server.service.api.PlateService;
@@ -44,21 +41,19 @@ public class PlateServiceImpl implements PlateService {
             throw new RuntimeException("PlateExtractor extract error");
         }
         //转换模型结果，并输出
-        System.out.println(plateImage.PlateInfos().size());
-
         List<PlateInfoRepVo> plates = new ArrayList<>();
         if(null != plateImage.PlateInfos() && !plateImage.PlateInfos().isEmpty()){
             for(PlateInfo plateInfo : plateImage.PlateInfos()){
                 //检测信息
                 PlateInfoRepVo plate = new PlateInfoRepVo();
                 plate.setScore((float)Math.floor(plateInfo.score * 1000000)/10000);
-                PlateLocation location = PlateLocation.build(
-                    plateInfo.box.x1(),
-                    plateInfo.box.y1(),
-                plateInfo.box.x2()-plateInfo.box.x1(),
-                plateInfo.box.y2()-plateInfo.box.y1()
-                );
+                PlateLocation location = new PlateLocation();
+                location.setLeftTop(new LocationPoint(plateInfo.box.leftTop.x, plateInfo.box.leftTop.y));
+                location.setRightTop(new LocationPoint(plateInfo.box.rightTop.x, plateInfo.box.rightTop.y));
+                location.setRightBottom(new LocationPoint(plateInfo.box.rightBottom.x, plateInfo.box.rightBottom.y));
+                location.setLeftBottom(new LocationPoint(plateInfo.box.leftBottom.x, plateInfo.box.leftBottom.y));
                 plate.setLocation(location);
+
                 //识别信息
                 RecognitionInfo recognition = new RecognitionInfo();
                 recognition.setLayout(plateInfo.single ? PlateLayout.SINGLE : PlateLayout.DOUBLE);
