@@ -73,7 +73,7 @@ docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/
 | VISUAL_SWAGGER_ENABLE  | 是否开启swagger   |   true  | true/false |
 
 ### 项目演示
-* ![输入图片说明](scripts%2Fimages%2Fvalidate-all.jpeg)
+![输入图片说明](scripts%2Fimages%2Fvalidate-all.jpeg)
 
 
 ### 项目用例
