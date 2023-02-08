@@ -72,8 +72,11 @@ docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/
 |------------------------|--------------:| :----:  |------------|
 | VISUAL_SWAGGER_ENABLE  | 是否开启swagger   |   true  | true/false |
 
-
 ### 项目演示
+* ![输入图片说明](scripts%2Fimages%2Fvalidate-all.jpeg)
+
+
+### 项目用例
 
 * 1.0.0 测试用例：open-anpr-test[测试用例-PlateRecognitionExample](https://gitee.com/open-visual/open-anpr/blob/master/open-anpr-test/src/main/java/com/visual/open/anpr/exps/PlateRecognitionExample.java)
 
