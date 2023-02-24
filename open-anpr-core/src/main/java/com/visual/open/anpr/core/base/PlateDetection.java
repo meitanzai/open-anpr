@@ -10,10 +10,10 @@ public interface PlateDetection {
 
 
     /**
-     *获取人脸信息
+     *获取车牌信息
      * @param image     图像信息
-     * @param scoreTh   人脸人数阈值
-     * @param iouTh     人脸iou阈值
+     * @param scoreTh   车牌分数阈值
+     * @param iouTh     车牌iou阈值
      * @param params    参数信息
      * @return
      */

@@ -8,7 +8,7 @@ import com.visual.open.anpr.core.domain.PlateImage;
 public interface PlateExtractor {
 
     /**
-     * 人脸特征提取
+     * 车牌特征提取
      * @param image
      * @param extParam
      * @param params

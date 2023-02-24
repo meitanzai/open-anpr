@@ -36,7 +36,7 @@ public class PlateRecognition {
         return ins.get(key);
     }
     /**
-     * 人脸比对操作对象
+     * 车牌检测操作对象
      * @return CollectHandler
      */
     public RecognitionHandler detection(){

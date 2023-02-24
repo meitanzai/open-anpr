@@ -45,7 +45,7 @@ public class ModelConfig {
     }
 
     /**
-     * 人脸特征提取服务
+     * 车牌特征提取服务
      * @return
      */
     @Bean(name = "visualPlateRecognition")

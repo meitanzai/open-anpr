@@ -27,7 +27,7 @@ public class PlateExtractorImpl implements PlateExtractor {
     @Override
     public PlateImage extract(ImageMat image, ExtParam extParam, Map<String, Object> params) {
         List<PlateInfo> plateInfos = plateDetection.inference(image, extParam.getScoreTh(),extParam.getIouTh(), new HashMap<>());
-        //取人脸topK
+        //取车牌topK
         int topK = (extParam.getTopK()  > 0) ? extParam.getTopK() : 5;
         if(plateInfos.size() > topK){
             plateInfos = plateInfos.subList(0, topK);

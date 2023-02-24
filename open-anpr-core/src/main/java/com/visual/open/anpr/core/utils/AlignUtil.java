@@ -13,7 +13,7 @@ public class AlignUtil {
 
 
     /**
-     * 人脸对齐
+     * 对齐
      * @param image         图像数据
      * @param imagePoint    图像中的关键点
      * @param stdWidth      定义的标准图像的宽度

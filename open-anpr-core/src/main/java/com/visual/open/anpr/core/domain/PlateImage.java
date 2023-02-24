@@ -8,13 +8,13 @@ public class PlateImage implements Serializable {
 
     /**图像数据**/
     public  String imageBase64;
-    /**人脸解析数据**/
+    /**车牌解析数据**/
     public List<PlateInfo> PlateInfos;
 
     /**
      * 构建函数
      * @param imageBase64   图像数据
-     * @param PlateInfos     人脸解析数据
+     * @param PlateInfos     车牌解析数据
      * @return
      */
     private PlateImage(String imageBase64, List<PlateInfo> PlateInfos) {
@@ -25,7 +25,7 @@ public class PlateImage implements Serializable {
     /**
      * 构建对象
      * @param imageBase64      图像数据
-     * @param PlateInfos     人脸解析数据
+     * @param PlateInfos     车牌解析数据
      * @return
      */
     public static PlateImage build(String imageBase64, List<PlateInfo> PlateInfos){
@@ -52,7 +52,7 @@ public class PlateImage implements Serializable {
     }
 
     /**
-     * 获取人脸解析数据
+     * 获取车牌解析数据
      * @return
      */
     public List<PlateInfo> PlateInfos(){
