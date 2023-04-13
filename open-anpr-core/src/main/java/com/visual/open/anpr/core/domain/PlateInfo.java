@@ -304,6 +304,23 @@ public class PlateInfo implements Comparable<PlateInfo>, Serializable {
         }
 
         /**
+         * 将框进行平移
+         * @param top       向上移动的像素点数
+         * @param bottom    向下移动的像素点数
+         * @param left      向左移动的像素点数
+         * @param right     向右移动的像素点数
+         * @return  平移后的框
+         */
+        public PlateBox move(int left, int right, int top, int bottom){
+            return new PlateBox(
+                    new Point(leftTop.x - left + right,  leftTop.y - top + bottom),
+                    new Point(rightTop.x - left + right,  rightTop.y - top + bottom),
+                    new Point(rightBottom.x - left + right,  rightBottom.y - top + bottom),
+                    new Point(leftBottom.x - left + right,  leftBottom.y - top + bottom)
+            );
+        }
+
+        /**
          * 转换为数组
          * @return
          */
