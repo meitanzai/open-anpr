@@ -21,7 +21,7 @@
 
 ### 项目文档
 
-* 在线文档：[文档-1.0.0](scripts/docs/doc-1.0.0.md)
+* 在线文档：[文档-1.1.0](scripts/docs/doc-1.0.0.md)
 
 * swagger文档：启动项目且开启swagger，访问：host:port/doc.html, 如 http://127.0.0.1:8080/doc.html
 
@@ -32,12 +32,12 @@
 <dependency>
     <groupId>com.visual.open.anpr</groupId>
     <artifactId>open-anpr-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 * 其他语言依赖
 
-&ensp; &ensp;使用restful接口：[文档-1.0.0](scripts/docs/doc-1.0.0.md)
+&ensp; &ensp;使用restful接口：[文档-1.1.0](scripts/docs/doc-1.0.0.md)
 
 
 ### 项目部署
@@ -45,13 +45,13 @@
 * docker部署
 ```
 1、直接docker部署项目：
-docker run -d --name "open-anpr" -p 56790:8080 divenswu/open-anpr:1.0.0
+docker run -d --name "open-anpr" -p 56790:8080 divenswu/open-anpr:1.1.0
 
 2、若想禁用swagger：
-docker run -d --name "open-anpr" -p 56790:8080 -e VISUAL_SWAGGER_ENABLE=false divenswu/open-anpr:1.0.0
+docker run -d --name "open-anpr" -p 56790:8080 -e VISUAL_SWAGGER_ENABLE=false divenswu/open-anpr:1.1.0
 
 3、若想挂载日志目录到本地：
-docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/logs divenswu/open-anpr:1.0.0
+docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/logs divenswu/open-anpr:1.1.0
 
 4、服务访问：
   swagger接口文档： http://127.0.0.1:56790/doc.html
@@ -78,7 +78,7 @@ docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/
 
 ### 项目用例
 
-* 1.0.0 测试用例：open-anpr-test[测试用例-PlateRecognitionExample](https://gitee.com/open-visual/open-anpr/blob/master/open-anpr-test/src/main/java/com/visual/open/anpr/exps/PlateRecognitionExample.java)
+* 1.1.0 测试用例：open-anpr-test[测试用例-PlateRecognitionExample](https://gitee.com/open-visual/open-anpr/blob/master/open-anpr-test/src/main/java/com/visual/open/anpr/exps/PlateRecognitionExample.java)
 
 * ![输入图片说明](scripts%2Fimages%2Fvalidate-1.0.0.jpg)
 
