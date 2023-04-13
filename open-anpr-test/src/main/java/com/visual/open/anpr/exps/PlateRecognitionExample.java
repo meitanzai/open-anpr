@@ -17,7 +17,7 @@ public class PlateRecognitionExample {
     //本地开发模式
     public static String serverHost = "http://127.0.0.1:8080";
     //docker部署模式
-//    public static String serverHost = "http://127.0.0.1:56790";
+    //public static String serverHost = "http://127.0.0.1:56790";
     //远程测试服务
     //public static String serverHost = "http://open-anpr.diven.nat300.top";
 
