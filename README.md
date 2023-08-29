@@ -83,7 +83,7 @@ docker run -d --name "open-anpr" -p 56790:8080 -v open-anpr/logs:/app/open-anpr/
 * ![输入图片说明](scripts%2Fimages%2Fvalidate-1.0.0.jpg)
 
 ### 车牌识别（手机打开体验更好）
-* [http://open-anpr.diven.nat300.top/](http://open-anpr.diven.nat300.top/)
+* [https://open-anpr.divenswu.com/](https://open-anpr.divenswu.com/)
 * ![输入图片说明](scripts%2Fimages%2Fvalidate-1.0.0.jpg)
 
 
